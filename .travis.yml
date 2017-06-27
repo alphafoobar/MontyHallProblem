@@ -1,0 +1,6 @@
+language: java
+jdk:
+  - oraclejdk8
+
+after_success:
+  - bash <(curl -s https://codecov.io/bash) -t ba9906d7-e8dd-41f8-9016-3f48463b9a5e || echo "Codecov did not collect coverage reports"
