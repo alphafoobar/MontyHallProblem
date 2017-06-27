@@ -33,17 +33,17 @@ public class MontyHallProblem {
         for (int i = 0; i < NUMBER_OF_TRIALS; i++) {
             Doors doors = new Doors(NUMBER_OF_DOORS);
 
-            Door originalDoor = doors.contestantPicksFirstDoor();
-            Door revealedDoor = doors.hostRevealsLosingDoor();
-            Door contestantsSwitchedPick = doors.contestantPicksAnotherDoor();
+            String originalDoor = doors.contestantChoosesDoor();
+            String revealedDoor = doors.hostRevealsLosingDoor();
+            String contestantsSwitchedPick = doors.contestantChoosesDoor();
 
-            if (CAR.equals(originalDoor.behindTheDoor)) {
+            if (CAR.equals(originalDoor)) {
                 originalWinsCounter++;
             }
-            if (GOAT.equals(revealedDoor.behindTheDoor)) {
+            if (GOAT.equals(revealedDoor)) {
                 goatRevealedCounter++;
             }
-            if (CAR.equals(contestantsSwitchedPick.behindTheDoor)) {
+            if (CAR.equals(contestantsSwitchedPick)) {
                 winsCounter++;
             }
         }

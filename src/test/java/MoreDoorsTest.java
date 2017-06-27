@@ -16,30 +16,30 @@ public class MoreDoorsTest {
 
     @Test
     public void pickRandomDoor() throws Exception {
-        assertNotNull(doors.contestantPicksFirstDoor());
+        assertNotNull(doors.contestantChoosesDoor());
     }
 
     @Test
     public void hostRevealedDoor() throws Exception {
         for (int i = 0; i < DOORS - 2; i++) {
-            assertThat(doors.hostRevealsLosingDoor().behindTheDoor, not(MontyHallProblem.CAR));
+            assertThat(doors.hostRevealsLosingDoor(), not(MontyHallProblem.CAR));
         }
     }
 
     @Test
     public void contestantPicksAnotherDoor() throws Exception {
-        assertNotNull(doors.contestantPicksFirstDoor());
-        assertThat(doors.hostRevealsLosingDoor().behindTheDoor, not(MontyHallProblem.CAR));
-        assertNotNull(doors.contestantPicksAnotherDoor());
+        assertNotNull(doors.contestantChoosesDoor());
+        assertThat(doors.hostRevealsLosingDoor(), not(MontyHallProblem.CAR));
+        assertNotNull(doors.contestantChoosesDoor());
     }
 
     @Test
     public void contestantPicksRemainingDoor() throws Exception {
-        assertNotNull(doors.contestantPicksFirstDoor());
+        assertNotNull(doors.contestantChoosesDoor());
         for (int i = 0; i < DOORS - 2; i++) {
-            assertThat(doors.hostRevealsLosingDoor().behindTheDoor, not(MontyHallProblem.CAR));
+            assertThat(doors.hostRevealsLosingDoor(), not(MontyHallProblem.CAR));
         }
-        assertNotNull(doors.contestantPicksAnotherDoor());
+        assertNotNull(doors.contestantChoosesDoor());
     }
 
     @Test
@@ -48,7 +48,7 @@ public class MoreDoorsTest {
         expect.expectMessage("No more losing doors!");
 
         for (int i = 0; i < DOORS; i++) {
-            assertThat(doors.hostRevealsLosingDoor().behindTheDoor, not(MontyHallProblem.CAR));
+            assertThat(doors.hostRevealsLosingDoor(), not(MontyHallProblem.CAR));
         }
     }
 }
