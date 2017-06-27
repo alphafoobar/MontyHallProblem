@@ -1,125 +1,61 @@
-import java.util.LinkedHashMap;
-import java.util.Map;
-import java.util.Iterator;
+import java.util.Random;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class MontyHallProblem {
 
-  private static final long numberOfTrials = 1000000;
-  private static final long numberOfDoors = 3;
+    private static final Logger logger = LoggerFactory.getLogger(MontyHallProblem.class);
+    private static final Random RANDOM = new Random();
 
-  private static final String CHOICE_GOAT = "Goat";
-  private static final String CHOICE_CAR = "Car";
-  private static long numberofTrailsCounter = 0;
-  private static long numberofWinsCounter = 0;
-  private static LinkedHashMap doorsAndPrizes = null;
+    static final String GOAT = "Goat";
+    static final String CAR = "Car";
 
-  public static void main(String[] args) {
-      long startTime = System.currentTimeMillis();
+    private static final int NUMBER_OF_DOORS = 3;
+    private static final int NUMBER_OF_TRIALS = 1000000;
 
-      for (long counter=1; counter <= numberOfTrials; counter++){
-        long currentNumberOfDoorsToChooseFrom = numberOfDoors;
-        setupDoorsAndPrizes();
-        long contestantsInitialPick = getRandomNumberofaDoor(numberOfDoors);
-		Long mapKeyForCcontestantsInitialPick = new Long(contestantsInitialPick);
+    private static int winsCounter;
+    private static int originalWinsCounter;
+    private static int goatRevealedCounter;
 
-        if (doorsAndPrizes.containsKey(mapKeyForCcontestantsInitialPick)) {
-            String contestantsInitialPrize = (String)doorsAndPrizes.get(mapKeyForCcontestantsInitialPick);
-            doorsAndPrizes.remove(mapKeyForCcontestantsInitialPick);
-        }
+    public static void main(String[] args) {
+        montyHallProblem();
+    }
 
-          currentNumberOfDoorsToChooseFrom--;
-          long revealedDoor = getRandomNumberofaDoor(currentNumberOfDoorsToChooseFrom);
+    private static void montyHallProblem() {
+        long startTime = System.currentTimeMillis();
 
-          if (revealDoor(revealedDoor) == false) {
-            if (currentNumberOfDoorsToChooseFrom == revealedDoor) {
-              revealedDoor--;
-            } else {
-              revealedDoor++;
+        for (long counter = 0; counter < NUMBER_OF_TRIALS; counter++) {
+            Doors doors = new Doors(NUMBER_OF_DOORS);
+
+            Door originalDoor = doors.contestantPicksFirstDoor();
+            Door revealedDoor = doors.hostRevealsLosingDoor();
+            Door contestantsSwitchedPick = doors.contestantPicksAnotherDoor();
+
+            if (CAR.equals(originalDoor.behindTheDoor)) {
+                originalWinsCounter++;
             }
-            revealDoor(revealedDoor);
-          }
-          currentNumberOfDoorsToChooseFrom--;
+            if (GOAT.equals(revealedDoor.behindTheDoor)) {
+                goatRevealedCounter++;
+            }
+            if (CAR.equals(contestantsSwitchedPick.behindTheDoor)) {
+                winsCounter++;
+            }
+        }
 
-          long contestantsSwitchedPick = getRandomNumberofaDoor(currentNumberOfDoorsToChooseFrom);
-          String finalPrize = whatDidContestantWin(contestantsSwitchedPick);
-          numberofTrailsCounter++;
-
-          if (finalPrize.equalsIgnoreCase(CHOICE_CAR)) {
-              numberofWinsCounter++;
-          }
-      }
-
-      long endTime = (System.currentTimeMillis());
-      System.out.println("Results: " + numberofTrailsCounter + " trials and " + numberofWinsCounter + " winners that switched");
+        logger.info("Time taken: {} ms.", (System.currentTimeMillis() - startTime));
+        logger.info("Results:"
+                + "\n\t{} times host reveals Goat"
+                + "\n\t{}% that would have won with original pick"
+                + "\n\t{}% that would win from switch"
+                + "\n\t{} total trials", goatRevealedCounter, percentage(originalWinsCounter),
+            percentage(winsCounter), NUMBER_OF_TRIALS);
     }
 
-
-  private static String whatDidContestantWin(long doorContestantSwitchedTo) {
-    String returnValue = null;
-
-    long doorCounter = 1;
-    Long key = null;
-    String value = null;
-
-    Iterator keyValuePairs = doorsAndPrizes.entrySet().iterator();
-        while (keyValuePairs.hasNext()) {
-          Map.Entry entry = (Map.Entry) keyValuePairs.next();
-          if (doorContestantSwitchedTo == doorCounter) {
-            key = (Long)entry.getKey();
-            value = (String)entry.getValue();
-            returnValue = value;
-          break;
-      }
-          doorCounter++;
-        }
-
-        return returnValue;
-  }
-
-  private static boolean revealDoor(long aRevealedDoor) {
-    boolean returnValue = false;
-    long numberOfDoors = doorsAndPrizes.size();
-    long revealCounter=1;
-    Long key = null;
-    String value = null;
-
-    Iterator keyValuePairs = doorsAndPrizes.entrySet().iterator();
-        while (keyValuePairs.hasNext()) {
-          Map.Entry entry = (Map.Entry) keyValuePairs.next();
-
-          if (aRevealedDoor == revealCounter) {
-            key = (Long)entry.getKey();  //  key is not used
-            value = (String)entry.getValue();
-
-          if (value.equalsIgnoreCase(CHOICE_GOAT)) {
-            returnValue = true;
-                doorsAndPrizes.remove(key);
-          } else {
-            returnValue = false;
-          }
-          break;
-      }
-          revealCounter++;
-        }
-    return returnValue;
-  }
-
-  private static long getRandomNumberofaDoor(long upperRangeofRandomNumber) {
-    long randomIntofaDoor = 1 + (int)(Math.random() * upperRangeofRandomNumber);
-    return randomIntofaDoor;
-  }
-
-  private static void setupDoorsAndPrizes() {
-    doorsAndPrizes = new LinkedHashMap();
-    long randomInt = getRandomNumberofaDoor(numberOfDoors);
-
-    for (int counter=1; counter <= numberOfDoors ;counter++){
-        if (randomInt == counter) {
-            doorsAndPrizes.put(new Long(counter), CHOICE_CAR);
-        } else {
-            doorsAndPrizes.put(new Long(counter), CHOICE_GOAT);
-        }
+    static double percentage(int counter) {
+        return counter * 100.0 / NUMBER_OF_TRIALS;
     }
-   }
 
+    static int randomIntegerLessThan(int upper) {
+        return RANDOM.nextInt(upper);
+    }
 }
