@@ -30,7 +30,7 @@ public class MontyHallProblem {
     private static void montyHallProblem() {
         long startTime = System.currentTimeMillis();
 
-        for (long counter = 0; counter < NUMBER_OF_TRIALS; counter++) {
+        for (int i = 0; i < NUMBER_OF_TRIALS; i++) {
             Doors doors = new Doors(NUMBER_OF_DOORS);
 
             Door originalDoor = doors.contestantPicksFirstDoor();
