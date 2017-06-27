@@ -22,9 +22,9 @@ public class MontyHallProblem {
     private static final int NUMBER_OF_TRIALS = 1000000;
     private static final int NUMBER_OF_DOORS = 3;
 
-    private static int winsCounter;
-    private static int originalWinsCounter;
-    private static int goatRevealedCounter;
+    private static int switchedWins;
+    private static int originalWins;
+    private static int revealedGoats;
 
     public static void main(String[] args) {
         montyHallProblem();
@@ -36,18 +36,14 @@ public class MontyHallProblem {
         for (int i = 0; i < NUMBER_OF_TRIALS; i++) {
             Doors doors = new Doors(NUMBER_OF_DOORS);
 
-            String originalDoor = doors.contestantChoosesDoor();
-            String revealedDoor = doors.hostRevealsLosingDoor();
-            String contestantsSwitchedPick = doors.contestantChoosesDoor();
-
-            if (CAR.equals(originalDoor)) {
-                originalWinsCounter++;
+            if (CAR.equals(doors.contestantChoosesDoor())) {
+                originalWins++;
             }
-            if (GOAT.equals(revealedDoor)) {
-                goatRevealedCounter++;
+            if (GOAT.equals(doors.hostRevealsLosingDoor())) {
+                revealedGoats++;
             }
-            if (CAR.equals(contestantsSwitchedPick)) {
-                winsCounter++;
+            if (CAR.equals(doors.contestantChoosesDoor())) {
+                switchedWins++;
             }
         }
 
@@ -56,8 +52,8 @@ public class MontyHallProblem {
                 + "\n\t{} times host reveals Goat"
                 + "\n\t{}% that would have won with original pick"
                 + "\n\t{}% that would win from switch"
-                + "\n\t{} total trials", goatRevealedCounter, percentage(originalWinsCounter),
-            percentage(winsCounter), NUMBER_OF_TRIALS);
+                + "\n\t{} total trials", revealedGoats, percentage(originalWins),
+            percentage(switchedWins), NUMBER_OF_TRIALS);
     }
 
     static double percentage(int counter) {
