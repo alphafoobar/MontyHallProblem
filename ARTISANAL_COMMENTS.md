@@ -52,5 +52,8 @@ example of a class that requires refactoring) comments can help future artisans 
 type fits in the world and what it does.
 9. User requirement references belong in VCS logs, not code comments.
 10. Simple design decisions are sometimes useful, where they can be articulated inline.
-11. If you can't think of anything nice to comment, don't comment at all.
+11. If you are producing an API for external consumption, then there is a significant exception. There 
+is an expectation that documentation is available for your API and in Java that is often produced 
+from JavaDoc style code commenting, in this case part of your deliverable is code commenting.
+12. If you can't think of anything nice to comment, don't comment at all.
  
