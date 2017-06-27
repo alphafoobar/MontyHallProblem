@@ -10,8 +10,8 @@ public class MontyHallProblem {
     static final String GOAT = "Goat";
     static final String CAR = "Car";
 
-    private static final int NUMBER_OF_DOORS = 3;
     private static final int NUMBER_OF_TRIALS = 1000000;
+    private static final int NUMBER_OF_DOORS = 3;
 
     private static int winsCounter;
     private static int originalWinsCounter;
