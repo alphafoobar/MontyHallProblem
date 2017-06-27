@@ -22,15 +22,13 @@ class Doors {
     }
 
     String hostRevealsLosingDoor() {
-        return doors.remove(findALosingDoor());
-    }
-
-    private int findALosingDoor() {
-        for (int i = 0; i < doors.size(); i++) {
-            String door = doors.get(i);
+        int i = 0;
+        for (String door : doors) {
             if (MontyHallProblem.GOAT.equals(door)) {
-                return i;
+                doors.remove(i);
+                return door;
             }
+            i++;
         }
 
         throw new IllegalStateException("No more losing doors!");
