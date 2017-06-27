@@ -2,9 +2,14 @@ import static org.hamcrest.core.IsNot.not;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertThat;
 
+import org.junit.Rule;
 import org.junit.Test;
+import org.junit.rules.ExpectedException;
 
 public class MoreDoorsTest {
+
+    @Rule
+    public ExpectedException expect = ExpectedException.none();
 
     private static final int DOORS = 20;
     private Doors doors = new Doors(DOORS);
@@ -35,5 +40,15 @@ public class MoreDoorsTest {
             assertThat(doors.hostRevealsLosingDoor().behindTheDoor, not(MontyHallProblem.CAR));
         }
         assertNotNull(doors.contestantPicksAnotherDoor());
+    }
+
+    @Test
+    public void hostRevealsTooManyDoors() throws Exception {
+        expect.expect(IllegalStateException.class);
+        expect.expectMessage("No more losing doors!");
+
+        for (int i = 0; i < DOORS; i++) {
+            assertThat(doors.hostRevealsLosingDoor().behindTheDoor, not(MontyHallProblem.CAR));
+        }
     }
 }
