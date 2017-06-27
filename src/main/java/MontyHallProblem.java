@@ -1,3 +1,9 @@
+/*
+ *  Michael Geiser
+ *  Personal Project
+ *  8 November 2007
+ *  Copyright Michael J. Geiser - all rights reserved
+ */
 import java.util.Random;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
