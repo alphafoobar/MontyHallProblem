@@ -19,18 +19,15 @@ to understand it when you are no longer available. Hence:
     and peer review is a great way of calculating it. Peer programming is a better way of reducing it.
     2. Always write enough tests to allow the next software artisan to refactor it confidently.
     3. Include a reference to the actual business requirement in your VCS of choice. So said artisan 
-    will have some idea as to what the actual business requirement was, when trying to understand your
-    code.
+    will have some idea as to what the actual business requirement was.
     4. If your code needs commenting, then you could have written it better. But if it isn't clear to
-    you how to do that now. Then do add comments, these are markers to future you and the next artisan
-    for where the code can be improved.
-    5. Don't add the requirement reference in the comment, it's more effective from the comment in the
-    VCS or other forms of documentation and gives the code a cluttered feel.
-    6. Don't comment every step in your code, your actual code does this better and is far easier to
-    refactor.
+    you how to do that now, then comments can work as the markers to future you.
+    5. Don't add the requirement reference in code comments, it's more effective in the
+    VCS logging or other forms of documentation.
+    6. Don't comment every step in your code: it's redundant and your actual code is far easier to refactor.
 2. Commenting doesn't replace the business requirements, testing, or code. Well written code, coupled
 with sensible tests should clearly reflect the business requirements. Comments could become a liability
-if they are not consistent with the code, tests or business requirements. Clearly in over time, 
+if they are not consistent with the code, tests or business requirements. Clearly over time, 
 comments become additional maintenance overhead that need to be kept in sync with changing requirements.
 3. Obviously comments are useful in many cases, since they provide more flexibility to communicate 
 and are not constrained by the compiler. This flexibility is double edged, where code has a tightly controlled
@@ -39,7 +36,7 @@ ensure the meaning of comments matches the intention.
 4. In my experience, most comments that are in production code are completely redundant. The comments
 that would be really helpful in understanding how architecturally code works tend to be out of place 
 in code comments.
-5. POJOs should require no commenting.
+5. POJOs don't require comments.
 6. What you implemented should be part of the holy trinity of business requirements, unit tests, and 
 code.
 7. Tricky parts, or less-than-obvious parts fit in with commenting what you couldn't write better.
