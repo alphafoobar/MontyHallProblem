@@ -3,6 +3,9 @@
 # Monty Hall Problem
 
 This simple application is an exploration into a solution to the [Monty Hall problem](http://montyhallproblem.com/).
+Though the application explores the Monty Hall problem, this fork attempts to illustrate how 
+improving the readability of the code base can make the solution easier to understand. Even with 
+minimal commenting.
 
 The main class is `MontyHallProblem` and can be run without providing arguments.
 
@@ -33,6 +36,8 @@ You must edit the constants in the `MontyHallProblem` class:
 > We had a side discussion on code commenting a few people wanted the discussion documented for future reference. 
 
 [@mgeiser](https://github.com/mgeiser) added the slide deck and created this example repo.
+* _The slides of interest regarding commenting are the last 5 slides of the deck._
+* An alternative school of thought is found with [software artisanship](ARTISANAL_COMMENTS.md).
 
 ## Further reading
 1. http://montyhallproblem.com/
