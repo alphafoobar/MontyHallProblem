@@ -3,11 +3,13 @@ package montyhall;
 import static montyhall.MontyHallProblem.CAR;
 import static montyhall.MontyHallProblem.GOAT;
 import static montyhall.MontyHallProblem.NUMBER_OF_TRIALS;
+import static org.slf4j.LoggerFactory.getLogger;
+
+import org.slf4j.Logger;
 
 class ScoreKeeper {
 
-    private static final org.slf4j.Logger logger = org.slf4j.LoggerFactory
-        .getLogger(MontyHallProblem.class);
+    private static final Logger logger = getLogger(MontyHallProblem.class);
 
     private final long startTime = System.currentTimeMillis();
 
