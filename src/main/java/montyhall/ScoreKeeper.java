@@ -27,15 +27,14 @@ class ScoreKeeper {
         }
     }
 
-    void print(montyhall.ScoreKeeper scoreKeeper) {
-        logger.info("Time taken: {} ms.", (System.currentTimeMillis() - this.startTime));
+    void print() {
+        logger.info("Time taken: {} ms.", (System.currentTimeMillis() - startTime));
         logger.info("Results:"
                 + "\n\t{} times host reveals Goat"
                 + "\n\t{}% that would have won with original pick"
                 + "\n\t{}% that would win from switch"
-                + "\n\t{} total trials",
-            scoreKeeper.revealedGoats, percentage(scoreKeeper.originalWins),
-            percentage(scoreKeeper.switchedWins), NUMBER_OF_TRIALS);
+                + "\n\t{} total trials", revealedGoats, percentage(originalWins),
+            percentage(switchedWins), NUMBER_OF_TRIALS);
     }
 
     static double percentage(int counter) {

@@ -30,7 +30,7 @@ public class MontyHallProblem {
             scoreKeeper.score(new Doors(NUMBER_OF_DOORS));
         }
 
-        scoreKeeper.print(scoreKeeper);
+        scoreKeeper.print();
     }
 
     static int randomIntegerLessThan(int upper) {
