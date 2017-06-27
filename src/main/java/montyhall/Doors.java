@@ -1,3 +1,9 @@
+package montyhall;
+
+import static montyhall.MontyHallProblem.CAR;
+import static montyhall.MontyHallProblem.GOAT;
+import static montyhall.MontyHallProblem.randomIntegerLessThan;
+
 import com.google.common.base.Preconditions;
 import java.util.LinkedList;
 import java.util.List;
@@ -18,32 +24,29 @@ class Doors {
 
     String contestantChoosesDoor() {
         Preconditions.checkState(!doors.isEmpty(), "No more doors to choose!");
-        return doors.remove(MontyHallProblem.randomIntegerLessThan(doors.size()));
+        return doors.remove(randomIntegerLessThan(doors.size()));
     }
 
     String hostRevealsLosingDoor() {
-        int i = 0;
-        for (String door : doors) {
-            if (MontyHallProblem.GOAT.equals(door)) {
-                doors.remove(i);
-                return door;
+        for (int i = 0; i < doors.size(); i++) {
+            String door = doors.get(i);
+            if (GOAT.equals(door)) {
+                return doors.remove(i);
             }
-            i++;
         }
 
         throw new IllegalStateException("No more losing doors!");
     }
 
     private void hideCarBehindDoor() {
-        int doorNumber = MontyHallProblem.randomIntegerLessThan(doors.size());
-        doors.set(doorNumber, MontyHallProblem.CAR);
+        doors.set(randomIntegerLessThan(doors.size()), CAR);
     }
 
     private static List<String> createDoors(int numberOfDoors) {
         // Linked lists allow us to remove items efficiently.
         List<String> doors = new LinkedList<>();
         for (int i = 0; i < numberOfDoors; i++) {
-            doors.add(MontyHallProblem.GOAT);
+            doors.add(GOAT);
         }
         return doors;
     }
