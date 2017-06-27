@@ -1,6 +1,6 @@
 [![Build Status](https://travis-ci.org/alphafoobar/MontyHallProblem.svg?branch=master)](https://travis-ci.com/alphafoobar/MontyHallProblem) [![codecov](https://codecov.io/gh/alphafoobar/MontyHallProblem/graph/badge.svg)](https://codecov.io/gh/alphafoobar/MontyHallProblem)
 
-# MontyHallProblem
+# Monty Hall Problem
 
 This simple application is an exploration into a solution to the [Monty Hall problem](http://montyhallproblem.com/).
 
