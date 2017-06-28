@@ -2,6 +2,7 @@ package montyhall;
 
 import static montyhall.MontyHallProblem.CAR;
 import static montyhall.MontyHallProblem.GOAT;
+import static montyhall.MontyHallProblem.NUMBER_OF_TRIALS;
 import static org.hamcrest.core.IsEqual.equalTo;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThat;
@@ -26,6 +27,21 @@ public class CounterTest {
     @Test
     public void percentage() {
         assertEquals(66.6633, Counter.percentage(666633), 0.00001);
+    }
+
+    @Test
+    public void percentage0() {
+        assertEquals(0.0001, Counter.percentage(1), 0.00001);
+    }
+
+    @Test
+    public void percentage1() {
+        assertEquals(1, Counter.percentage(10000), 0.00001);
+    }
+
+    @Test
+    public void percentage100() {
+        assertEquals(100, Counter.percentage(NUMBER_OF_TRIALS), 0.00001);
     }
 
     @Test
@@ -55,12 +71,12 @@ public class CounterTest {
     @Test
     public void stitchedUpContest() {
         when(doors.contestantChoosesDoor()).thenReturn(GOAT, GOAT);
-        when(doors.hostRevealsLosingDoor()).thenReturn(GOAT);
+        when(doors.hostRevealsLosingDoor()).thenReturn(CAR);
 
         counter.runContest(doors);
 
         assertThat(counter.getOriginalWins(), equalTo(0));
-        assertThat(counter.getRevealedGoats(), equalTo(1));
+        assertThat(counter.getRevealedGoats(), equalTo(0));
         assertThat(counter.getSwitchedWins(), equalTo(0));
     }
 

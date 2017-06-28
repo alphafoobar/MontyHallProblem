@@ -17,26 +17,26 @@ public class MoreDoorsTest {
     private Doors doors = new Doors(DOORS);
 
     @Test
-    public void pickRandomDoor() throws Exception {
+    public void contestantCanChooseADoor() throws Exception {
         assertNotNull(doors.contestantChoosesDoor());
     }
 
     @Test
-    public void hostRevealedDoor() throws Exception {
+    public void hostCanChooseManyDoorsThatAreNotACar() throws Exception {
         for (int i = 0; i < DOORS - 2; i++) {
             assertThat(doors.hostRevealsLosingDoor(), not(MontyHallProblem.CAR));
         }
     }
 
     @Test
-    public void contestantPicksAnotherDoor() throws Exception {
+    public void contestantCanChooseAgainAfterHost() throws Exception {
         assertNotNull(doors.contestantChoosesDoor());
         assertThat(doors.hostRevealsLosingDoor(), not(MontyHallProblem.CAR));
         assertNotNull(doors.contestantChoosesDoor());
     }
 
     @Test
-    public void contestantPicksRemainingDoor() throws Exception {
+    public void contestantCanChooseAgainAfterHostHasRevealedManyGoats() throws Exception {
         assertNotNull(doors.contestantChoosesDoor());
         for (int i = 0; i < DOORS - 2; i++) {
             assertThat(doors.hostRevealsLosingDoor(), not(MontyHallProblem.CAR));

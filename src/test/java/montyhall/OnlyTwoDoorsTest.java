@@ -8,7 +8,7 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
 
-public class LessDoorsTest {
+public class OnlyTwoDoorsTest {
 
     @Rule
     public ExpectedException expect = ExpectedException.none();
@@ -16,17 +16,17 @@ public class LessDoorsTest {
     private Doors doors = new Doors(2);
 
     @Test
-    public void pickRandomDoor() throws Exception {
+    public void contestantCanChooseADoor() throws Exception {
         assertNotNull(doors.contestantChoosesDoor());
     }
 
     @Test
-    public void hostRevealedDoor() throws Exception {
+    public void hostCanRevealADoorThatIsNotACar() throws Exception {
         assertThat(doors.hostRevealsLosingDoor(), not(MontyHallProblem.CAR));
     }
 
     @Test
-    public void whenThereAreOnlyTwoDoorsThenFail() throws Exception {
+    public void whenThereAreOnlyTwoDoorsContestantCantChooseAgain() throws Exception {
         // With only two doors and a random selection we have non-determinism. Either the host will
         // not be able to find an alternative losing door. Or there will be no more choices available
         // for the contestants second choice.

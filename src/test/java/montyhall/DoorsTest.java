@@ -11,17 +11,17 @@ public class DoorsTest {
     private Doors doors = new Doors(3);
 
     @Test
-    public void pickRandomDoor() throws Exception {
+    public void contestantCanChooseADoor() throws Exception {
         assertNotNull(doors.contestantChoosesDoor());
     }
 
     @Test
-    public void hostRevealedDoor() throws Exception {
+    public void hostCanRevealADoorThatIsNotACar() throws Exception {
         assertThat(doors.hostRevealsLosingDoor(), not(MontyHallProblem.CAR));
     }
 
     @Test
-    public void contestantPicksAnotherDoor() throws Exception {
+    public void contestantCanChooseAgainAfterHost() throws Exception {
         assertNotNull(doors.contestantChoosesDoor());
         assertThat(doors.hostRevealsLosingDoor(), not(MontyHallProblem.CAR));
         assertNotNull(doors.contestantChoosesDoor());
