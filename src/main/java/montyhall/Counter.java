@@ -7,7 +7,10 @@ import static org.slf4j.LoggerFactory.getLogger;
 
 import org.slf4j.Logger;
 
-class ScoreKeeper {
+/**
+ * Run the competition routine and keep track of the results.
+ */
+class Counter {
 
     private static final Logger logger = getLogger(MontyHallProblem.class);
 
@@ -17,7 +20,7 @@ class ScoreKeeper {
     private int originalWins;
     private int revealedGoats;
 
-    void score(Doors doors) {
+    void runContest(Doors doors) {
         if (CAR.equals(doors.contestantChoosesDoor())) {
             originalWins++;
         }
@@ -29,6 +32,9 @@ class ScoreKeeper {
         }
     }
 
+    /**
+     * Prints the result summary.
+     */
     void print() {
         logger.info("Time taken: {} ms.", (System.currentTimeMillis() - startTime));
         logger.info("Results:"
@@ -39,7 +45,26 @@ class ScoreKeeper {
             percentage(switchedWins), NUMBER_OF_TRIALS);
     }
 
-    static double percentage(int counter) {
-        return counter * 100.0 / NUMBER_OF_TRIALS;
+    /**
+     * Convert a raw result score into a percentage of the total trials from {@code
+     * NUMBER_OF_TRIALS}.
+     *
+     * @param result The raw score, i.e. number of times the car found behind a door.
+     * @return The percentage of {@code NUMBER_OF_TRIALS}.
+     */
+    static double percentage(int result) {
+        return result * 100.0 / NUMBER_OF_TRIALS;
+    }
+
+    int getSwitchedWins() {
+        return switchedWins;
+    }
+
+    int getOriginalWins() {
+        return originalWins;
+    }
+
+    int getRevealedGoats() {
+        return revealedGoats;
     }
 }

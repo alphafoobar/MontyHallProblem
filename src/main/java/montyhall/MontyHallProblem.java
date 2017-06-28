@@ -24,13 +24,13 @@ public class MontyHallProblem {
     }
 
     private static void montyHallProblem() {
-        ScoreKeeper scoreKeeper = new ScoreKeeper();
+        Counter counter = new Counter();
 
         for (int i = 0; i < NUMBER_OF_TRIALS; i++) {
-            scoreKeeper.score(new Doors(NUMBER_OF_DOORS));
+            counter.runContest(new Doors(NUMBER_OF_DOORS));
         }
 
-        scoreKeeper.print();
+        counter.print();
     }
 
     static int randomIntegerLessThan(int upper) {
