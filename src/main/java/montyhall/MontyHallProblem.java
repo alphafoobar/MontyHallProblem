@@ -23,14 +23,14 @@ public class MontyHallProblem {
     private final Counter counter;
 
     public static void main(String[] args) {
-        new MontyHallProblem(new Counter()).runContest(NUMBER_OF_TRIALS, NUMBER_OF_DOORS);
+        new MontyHallProblem(new Counter()).runTrials(NUMBER_OF_TRIALS, NUMBER_OF_DOORS);
     }
 
     MontyHallProblem(Counter counter) {
         this.counter = counter;
     }
 
-    void runContest(int trials, int doors) {
+    void runTrials(int trials, int doors) {
         for (int i = 0; i < trials; i++) {
             counter.runContest(new Doors(doors));
         }
