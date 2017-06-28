@@ -11,7 +11,6 @@ import java.util.Random;
 /**
  * Doors represents all the doors in a competition. Generally 3 doors would be
  * expected. But a contest might be started that includes any number of doors.
- *
  * Less than 3 doors would not allow a contestant to switch their choice after the host reveals a
  * losing door and might not allow the host to reveal a losing door.
  */
