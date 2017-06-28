@@ -1,36 +1,55 @@
 package montyhall;
 
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.core.IsEqual.equalTo;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 
+import java.util.Arrays;
+import java.util.Collection;
 import org.junit.Rule;
 import org.junit.Test;
-import org.mockito.Mock;
+import org.junit.runner.RunWith;
+import org.junit.runners.Parameterized;
+import org.junit.runners.Parameterized.Parameter;
+import org.junit.runners.Parameterized.Parameters;
+import org.mockito.Spy;
 import org.mockito.junit.MockitoJUnit;
 import org.mockito.junit.MockitoRule;
 
+@RunWith(Parameterized.class)
 public class MontyHallProblemTest {
 
     @Rule
     public MockitoRule rule = MockitoJUnit.rule();
 
-    @Mock
+    @Spy
     private TrialsCounter counter;
 
-    @Test
-    public void runContestOnce() {
-        new MontyHallProblem(counter).runTrials(1, 3);
+    @Parameter
+    public int numberOfTimes;
 
-        verify(counter).play(any(Doors.class));
-        verify(counter).print();
+    @Parameters(name = "times {0}")
+    public static Collection<Object[]> data() {
+        return Arrays.asList(
+            params(0),
+            params(1),
+            params(179)
+        );
+    }
+
+    private static Object[] params(int times) {
+        return new Object[]{times};
     }
 
     @Test
     public void runContestMore() {
-        new MontyHallProblem(counter).runTrials(179, 3);
+        new MontyHallProblem(counter).runTrials(numberOfTimes, 3);
 
-        verify(counter, times(179)).play(any(Doors.class));
+        assertThat(counter.getRevealedGoats(), equalTo(numberOfTimes));
+
+        verify(counter, times(numberOfTimes)).play(any(Doors.class));
         verify(counter).print();
     }
 }
