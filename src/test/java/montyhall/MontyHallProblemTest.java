@@ -16,13 +16,13 @@ public class MontyHallProblemTest {
     public MockitoRule rule = MockitoJUnit.rule();
 
     @Mock
-    private Counter counter;
+    private TrialsCounter counter;
 
     @Test
     public void runContestOnce() {
         new MontyHallProblem(counter).runTrials(1, 3);
 
-        verify(counter).runContest(any(Doors.class));
+        verify(counter).play(any(Doors.class));
         verify(counter).print();
     }
 
@@ -30,7 +30,7 @@ public class MontyHallProblemTest {
     public void runContestMore() {
         new MontyHallProblem(counter).runTrials(179, 3);
 
-        verify(counter, times(179)).runContest(any(Doors.class));
+        verify(counter, times(179)).play(any(Doors.class));
         verify(counter).print();
     }
 }

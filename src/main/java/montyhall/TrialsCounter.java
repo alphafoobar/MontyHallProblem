@@ -10,7 +10,7 @@ import org.slf4j.Logger;
 /**
  * Run the competition routine and keep track of the results.
  */
-class Counter {
+class TrialsCounter {
 
     private static final Logger logger = getLogger(MontyHallProblem.class);
 
@@ -20,7 +20,7 @@ class Counter {
     private int originalWins;
     private int revealedGoats;
 
-    void runContest(Doors doors) {
+    void play(Doors doors) {
         if (CAR.equals(doors.contestantChoosesDoor())) {
             originalWins++;
         }

@@ -14,7 +14,7 @@ import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnit;
 import org.mockito.junit.MockitoRule;
 
-public class CounterTest {
+public class TrialsCounterTest {
 
     @Rule
     public MockitoRule rule = MockitoJUnit.rule();
@@ -22,26 +22,26 @@ public class CounterTest {
     @Mock
     private Doors doors;
 
-    private Counter counter = new Counter();
+    private TrialsCounter counter = new TrialsCounter();
 
     @Test
     public void percentage() {
-        assertEquals(66.6633, Counter.percentage(666633), 0.00001);
+        assertEquals(66.6633, TrialsCounter.percentage(666633), 0.00001);
     }
 
     @Test
     public void percentage0() {
-        assertEquals(0.0001, Counter.percentage(1), 0.00001);
+        assertEquals(0.0001, TrialsCounter.percentage(1), 0.00001);
     }
 
     @Test
     public void percentage1() {
-        assertEquals(1, Counter.percentage(10000), 0.00001);
+        assertEquals(1, TrialsCounter.percentage(10000), 0.00001);
     }
 
     @Test
     public void percentage100() {
-        assertEquals(100, Counter.percentage(NUMBER_OF_TRIALS), 0.00001);
+        assertEquals(100, TrialsCounter.percentage(NUMBER_OF_TRIALS), 0.00001);
     }
 
     @Test
@@ -49,7 +49,7 @@ public class CounterTest {
         when(doors.contestantChoosesDoor()).thenReturn(GOAT, CAR);
         when(doors.hostRevealsLosingDoor()).thenReturn(GOAT);
 
-        counter.runContest(doors);
+        counter.play(doors);
 
         assertThat(counter.getOriginalWins(), equalTo(0));
         assertThat(counter.getRevealedGoats(), equalTo(1));
@@ -61,7 +61,7 @@ public class CounterTest {
         when(doors.contestantChoosesDoor()).thenReturn(CAR, GOAT);
         when(doors.hostRevealsLosingDoor()).thenReturn(GOAT);
 
-        counter.runContest(doors);
+        counter.play(doors);
 
         assertThat(counter.getOriginalWins(), equalTo(1));
         assertThat(counter.getRevealedGoats(), equalTo(1));
@@ -73,7 +73,7 @@ public class CounterTest {
         when(doors.contestantChoosesDoor()).thenReturn(GOAT, GOAT);
         when(doors.hostRevealsLosingDoor()).thenReturn(CAR);
 
-        counter.runContest(doors);
+        counter.play(doors);
 
         assertThat(counter.getOriginalWins(), equalTo(0));
         assertThat(counter.getRevealedGoats(), equalTo(0));

@@ -8,7 +8,7 @@
 package montyhall;
 
 /**
- * This is the main class of the application. It uses a {@link Counter} to keep track of the
+ * This is the main class of the application. It uses a {@link TrialsCounter} to keep track of the
  * results.
  */
 public class MontyHallProblem {
@@ -20,19 +20,19 @@ public class MontyHallProblem {
 
     private static final int NUMBER_OF_DOORS = 3;
 
-    private final Counter counter;
+    private final TrialsCounter counter;
 
     public static void main(String[] args) {
-        new MontyHallProblem(new Counter()).runTrials(NUMBER_OF_TRIALS, NUMBER_OF_DOORS);
+        new MontyHallProblem(new TrialsCounter()).runTrials(NUMBER_OF_TRIALS, NUMBER_OF_DOORS);
     }
 
-    MontyHallProblem(Counter counter) {
+    MontyHallProblem(TrialsCounter counter) {
         this.counter = counter;
     }
 
     void runTrials(int trials, int doors) {
         for (int i = 0; i < trials; i++) {
-            counter.runContest(new Doors(doors));
+            counter.play(new Doors(doors));
         }
         counter.print();
     }
