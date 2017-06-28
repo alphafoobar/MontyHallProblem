@@ -26,5 +26,4 @@ public class DoorsTest {
         assertThat(doors.hostRevealsLosingDoor(), not(MontyHallProblem.CAR));
         assertNotNull(doors.contestantChoosesDoor());
     }
-
 }

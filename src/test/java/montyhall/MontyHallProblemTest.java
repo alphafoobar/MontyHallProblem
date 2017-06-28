@@ -1,9 +1,5 @@
 package montyhall;
 
-import static montyhall.MontyHallProblem.randomIntegerLessThan;
-import static org.hamcrest.number.OrderingComparison.greaterThanOrEqualTo;
-import static org.hamcrest.number.OrderingComparison.lessThan;
-import static org.junit.Assert.assertThat;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
@@ -21,13 +17,6 @@ public class MontyHallProblemTest {
 
     @Mock
     private Counter counter;
-
-    @Test
-    public void randomDoorOf3() {
-        int randomIntegerLessThan = randomIntegerLessThan(3);
-        assertThat(randomIntegerLessThan, lessThan(3));
-        assertThat(randomIntegerLessThan, greaterThanOrEqualTo(0));
-    }
 
     @Test
     public void runContestOnce() {

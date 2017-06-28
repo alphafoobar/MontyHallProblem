@@ -2,17 +2,19 @@ package montyhall;
 
 import static montyhall.MontyHallProblem.CAR;
 import static montyhall.MontyHallProblem.GOAT;
-import static montyhall.MontyHallProblem.randomIntegerLessThan;
 
 import com.google.common.base.Preconditions;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Random;
 
 /**
  * Doors can be created to represent a number of doors in a competition. Generally 3 doors would be
  * expected. But Doors can handle contests that include any number of doors.
  */
 class Doors {
+
+    private static final Random RANDOM = new Random();
 
     private final List<String> doors;
 
@@ -49,5 +51,9 @@ class Doors {
             doors.add(GOAT);
         }
         return doors;
+    }
+
+    private static int randomIntegerLessThan(int upper) {
+        return RANDOM.nextInt(upper);
     }
 }

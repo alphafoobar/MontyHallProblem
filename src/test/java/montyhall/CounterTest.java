@@ -79,5 +79,4 @@ public class CounterTest {
         assertThat(counter.getRevealedGoats(), equalTo(0));
         assertThat(counter.getSwitchedWins(), equalTo(0));
     }
-
 }

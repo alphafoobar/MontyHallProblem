@@ -7,11 +7,11 @@
 
 package montyhall;
 
-import java.util.Random;
-
+/**
+ * This is the main class of the application. It uses a {@link Counter} to keep track of the
+ * results.
+ */
 public class MontyHallProblem {
-
-    private static final Random RANDOM = new Random();
 
     static final String GOAT = "Goat";
     static final String CAR = "Car";
@@ -22,22 +22,18 @@ public class MontyHallProblem {
 
     private final Counter counter;
 
-    MontyHallProblem(Counter counter) {
-        this.counter = counter;
-    }
-
     public static void main(String[] args) {
         new MontyHallProblem(new Counter()).runContest(NUMBER_OF_TRIALS, NUMBER_OF_DOORS);
     }
 
-    void runContest(int numberOfTrials, int numberOfDoors) {
-        for (int i = 0; i < numberOfTrials; i++) {
-            counter.runContest(new Doors(numberOfDoors));
-        }
-        counter.print();
+    MontyHallProblem(Counter counter) {
+        this.counter = counter;
     }
 
-    static int randomIntegerLessThan(int upper) {
-        return RANDOM.nextInt(upper);
+    void runContest(int trials, int doors) {
+        for (int i = 0; i < trials; i++) {
+            counter.runContest(new Doors(doors));
+        }
+        counter.print();
     }
 }
