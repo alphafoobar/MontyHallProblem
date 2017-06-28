@@ -9,8 +9,11 @@ import java.util.List;
 import java.util.Random;
 
 /**
- * Doors can be created to represent a number of doors in a competition. Generally 3 doors would be
- * expected. But Doors can handle contests that include any number of doors.
+ * Doors represents all the doors in a competition. Generally 3 doors would be
+ * expected. But a contest might be started that includes any number of doors.
+ *
+ * Less than 3 doors would not allow a contestant to switch their choice after the host reveals a
+ * losing door and might not allow the host to reveal a losing door.
  */
 class Doors {
 
