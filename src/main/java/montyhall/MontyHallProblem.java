@@ -17,19 +17,23 @@ public class MontyHallProblem {
     static final String CAR = "Car";
 
     static final int NUMBER_OF_TRIALS = 1000000;
+
     private static final int NUMBER_OF_DOORS = 3;
 
-    public static void main(String[] args) {
-        montyHallProblem();
+    private final Counter counter;
+
+    MontyHallProblem(Counter counter) {
+        this.counter = counter;
     }
 
-    private static void montyHallProblem() {
-        Counter counter = new Counter();
+    public static void main(String[] args) {
+        new MontyHallProblem(new Counter()).runContest(NUMBER_OF_TRIALS, NUMBER_OF_DOORS);
+    }
 
-        for (int i = 0; i < NUMBER_OF_TRIALS; i++) {
-            counter.runContest(new Doors(NUMBER_OF_DOORS));
+    void runContest(int numberOfTrials, int numberOfDoors) {
+        for (int i = 0; i < numberOfTrials; i++) {
+            counter.runContest(new Doors(numberOfDoors));
         }
-
         counter.print();
     }
 
