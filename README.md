@@ -7,7 +7,8 @@ Though the application explores the Monty Hall problem, this fork attempts to il
 improving the readability of the code base can make the solution easier to understand. Even with 
 minimal commenting.
 
-The main class is `MontyHallProblem` and can be run without providing arguments.
+The main class is `MontyHallProblem` and can be run without providing arguments. It creates a counter to keep track of 
+the results and prints a summary of results and the end of execution. For each iteration (or contest) run, a collection of doors is created to keep track of the contestant and host selections.
 
 ## Running this application from the command line
 
@@ -20,6 +21,9 @@ mvn exec:java -Dexec.mainClass="MontyHallProblem"
 You must edit the constants in the `MontyHallProblem` class:
   1. `NUMBER_OF_TRIALS`:  A larger number provides a higher confidence in the statistical result.  
   2. `NUMBER_OF_DOORS`:  3 is the most common, but any number will work.
+
+## Logging
+Is handled by slf4j - check the configuration in the resources directory.
 
 ## What does this program do?
 1. Loops through the specified number of trials.
