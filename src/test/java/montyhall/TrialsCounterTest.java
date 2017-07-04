@@ -22,26 +22,26 @@ public class TrialsCounterTest {
     @Mock
     private Doors doors;
 
-    private TrialsCounter counter = new TrialsCounter();
+    private TrialsCounter counter = new TrialsCounter(NUMBER_OF_TRIALS);
 
     @Test
     public void percentage() {
-        assertEquals(66.6633, TrialsCounter.percentage(666633), 0.00001);
+        assertEquals(66.6633, counter.percentage(666633), 0.00001);
     }
 
     @Test
     public void percentage0() {
-        assertEquals(0.0001, TrialsCounter.percentage(1), 0.00001);
+        assertEquals(0.0001, counter.percentage(1), 0.00001);
     }
 
     @Test
     public void percentage1() {
-        assertEquals(1, TrialsCounter.percentage(10000), 0.00001);
+        assertEquals(1, counter.percentage(10000), 0.00001);
     }
 
     @Test
     public void percentage100() {
-        assertEquals(100, TrialsCounter.percentage(NUMBER_OF_TRIALS), 0.00001);
+        assertEquals(100, counter.percentage(NUMBER_OF_TRIALS), 0.00001);
     }
 
     @Test

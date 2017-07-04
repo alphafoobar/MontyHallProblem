@@ -2,7 +2,6 @@ package montyhall;
 
 import static montyhall.MontyHallProblem.CAR;
 import static montyhall.MontyHallProblem.GOAT;
-import static montyhall.MontyHallProblem.NUMBER_OF_TRIALS;
 import static org.slf4j.LoggerFactory.getLogger;
 
 import org.slf4j.Logger;
@@ -15,10 +14,15 @@ class TrialsCounter {
     private static final Logger logger = getLogger(MontyHallProblem.class);
 
     private final long startTime = System.currentTimeMillis();
+    private final int trials;
 
     private int switchedWins;
     private int originalWins;
     private int revealedGoats;
+
+    TrialsCounter(int trials) {
+        this.trials = trials;
+    }
 
     void play(Doors doors) {
         if (CAR.equals(doors.contestantChoosesDoor())) {
@@ -42,7 +46,7 @@ class TrialsCounter {
                 + "\n\t{}% that would have won with original pick"
                 + "\n\t{}% that would win from switch"
                 + "\n\t{} total trials", revealedGoats, percentage(originalWins),
-            percentage(switchedWins), NUMBER_OF_TRIALS);
+            percentage(switchedWins), trials);
     }
 
     /**
@@ -52,8 +56,8 @@ class TrialsCounter {
      * @param result The raw score, i.e. number of times the car found behind a door.
      * @return The percentage of {@code NUMBER_OF_TRIALS}.
      */
-    static double percentage(int result) {
-        return result * 100.0 / NUMBER_OF_TRIALS;
+    double percentage(int result) {
+        return result * 100.0 / trials;
     }
 
     int getSwitchedWins() {
