@@ -41,7 +41,8 @@ Is handled by slf4j - check the configuration in the resources directory.
 
 @mgeiser added the slide deck and created this example repo.
 * _The slides of interest regarding commenting are the last 5 slides of the deck._
-* An alternative school of thought is found with [software artisanship](ARTISANAL_COMMENTS.md).
+* This fork intends to explore an alternative school of thought.
+  > Comments highlight code that can be improved.
 
 ## Further reading
 1. http://montyhallproblem.com/
